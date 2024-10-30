@@ -1,8 +1,10 @@
+#!/usr/bin/env python3
+
 import secrets
 import string
 import webbrowser
 import spotipy
-import configurations.config
+from config import *
 from spotipy.oauth2 import SpotifyOAuth
 from models import Album, Artist
 from utility import *
@@ -22,7 +24,7 @@ def generate_band_letter():
 
 def get_all_artists():
     artists_map = {}
-    total = configurations.config.maximum_artists
+    total = maximum_artists
     current_length = 0
     after = None
     while(current_length <= total):
@@ -51,10 +53,10 @@ def sort_artists_by_letter(letter, artists_map):
     return sorted({name: artist.id for name, artist in artists_map.items() if name.lower().startswith(letter.lower())})
 
 # Authenticate with Spotify
-sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=configurations.config.client_id,
-                                               client_secret=configurations.config.client_secret,
-                                               redirect_uri=configurations.config.redirect_uri,
-                                               scope=configurations.config.scope))
+sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=client_id,
+                                               client_secret=client_secret,
+                                               redirect_uri=redirect_uri,
+                                               scope=scope))
 
 def randomize_an_album():
     #main
@@ -84,3 +86,5 @@ def randomize_an_album():
     #open url in spotify
     webbrowser.open(album_to_play_href)
     return album_to_play_href
+
+randomize_an_album()

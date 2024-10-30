@@ -65,3 +65,4 @@ logs/
 **/output/*
 **/configurations/*
 **/config.py
+**/bin/*
