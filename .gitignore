@@ -64,3 +64,4 @@ logs/
 **/.cache
 **/output/*
 **/configurations/*
+**/config.py
